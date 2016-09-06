@@ -11,4 +11,4 @@ print  "r2 =", r2
 r3 = r1 + r2
 print  "r3 =", r3
 
-# Numpy Quickstart tutorial, https://docs
+# Numpy Quickstart tutorial, https://docs.scipy.org/doc/numpy-dev/user/quickstart.html
