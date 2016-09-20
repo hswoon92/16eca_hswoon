@@ -12,3 +12,9 @@ z = x + 2 * y
 print('z = %s' % z)
 
 # SymPy Tutorial, http://docs.sympy.org/latest/tutorial/index.html
+
+z_iy = sp. integrate(z, y)
+print('z_iy = %s' % z_iy)
+
+z_ix = sp. integrate(z, x)
+print('z_iy = %s' % z_ix)
