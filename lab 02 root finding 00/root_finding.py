@@ -108,8 +108,8 @@ def bisection(f, xl, xh, epsilon=epsilon_global, b_verbose=False):
 
          if b_verbose:
              # 중간 과정을 표시
-             print("xl = %8f f(xl) = %+8f xn = %+8f xh = %+8f f(xh) = %8h |xh-xl| = %+8f" % (
-                 xl, f(xl), xn, f(xn), f(xn), xh, f(xh), abs(xh - xl)))
+             print ("xl = %8f f(xl) = %+8f xn = %+8f f(xn) = %+8f xh = %+8f f(xh) = %8f |xh -xl| = %+8f" % (
+                 xl, f(xl), xn, f(xn), xh, f(xh), abs(xh - xl)))
 
          # xl ~ xh 구간의 길이가 다른 epsilon 보다 짧으면 무한 반복문을 중단
          if abs(xh - xl) < epsilon:
@@ -122,6 +122,7 @@ def bisection(f, xl, xh, epsilon=epsilon_global, b_verbose=False):
      # xn 을 반환
      return xn
 # end of bisection
+
 
 def newton(f, df, x0, epsilon=epsilon_global, b_verbose=False):
     """
@@ -176,7 +177,7 @@ def newton(f, df, x0, epsilon=epsilon_global, b_verbose=False):
 # end of newton
 
 
-def fuc(x):
+def func(x):
     """
     f(x) = 0 을 만족하는 x 를 찾고자 하는 f()
     이 경우는 x * x - 2.0 = 0 을 만족하는 x 를 찾게 되며 이러한 x 는 2 ** 0.5 즉 2 의 제곱근임
@@ -188,6 +189,7 @@ def fuc(x):
 
 # end of func()
 # BATzerk, "Square Root Calculator", Scratch, [Onlin] Available : https://scratch.mit.edu/projects/35488/
+
 
 def dfunc(x):
     """
@@ -202,29 +204,26 @@ def dfunc(x):
 def main():
     # 순차 대입법 sequential method 로 func() 의 해를 구하기 위해 시도
 
-    x0 = "0.01" # x의 초기값. 정수인가? 실수인가? 문자열인가?
+    x0 = "0.01" # x의 초기값, 정수인가? 실수인가? 문자열인가?
     x_seq = sequential(func, x0, b_verbose=True)
     print "x_seq =", x_seq
     print "f(x_seq) =", func(x_seq)
 
     # 이분법 bisection method 로 func() 의 해를 구하기 위해 시도
-    x_bis = bisection(fuc, 0.01, 2.0, b_verbose=True)
+    x_bis = bisection(func, 0.01, 2.0, b_verbose=True)
     print "x_bis =", x_bis
     print "f(x_bis) =", func(x_bis)
 
     # 뉴튼-랩슨법 Newton Raphson method 로 func() 의 해를 구하기 위해 시도
     # 초기값은 얼마인가?
     # 위의 두 방법에서는 필요하지 않았던 매개변수는 어떤 것인가?
+    x_nr = newton(func, dfunc, 2.0, b_verbose=True)
     print "x_nr =", x_nr
     print "f(x_nr) =", func(x_nr)
 
-    # 세 방법은로 구한 x 의 정확도
-    print "error  seq       bis        nr"
-    print "        %7g %7g %7g" % (abs(2.0 ** 0.5 - x_seq), abs(2.0 ** 0.5 - x_bis), abs(2.0 ** 0.5 - x_nr))
-
+    # 세 방법으로 구한 x 의 정확도
+    print "error    seq        bis        nr"
+    print "         %7g %7g %7g" % (abs(2.0 ** 0.5 - x_seq), abs(2.0 ** 0.5 - x_bis), abs(2.0 ** 0.5 - x_nr))
 
 if "__main__" == __name__:
-     main()
-
-
-
+    main()
